@@ -113,38 +113,6 @@ public class CharacterControl : MonoBehaviour
         anim.SetBool(newAnimation, true);
     }
 
-    /// <summary>
-    ///  <para>When the character attacks, attack1 must be invoke.</para>
-    ///  <para>Each attack type of character use same.</para>
-    /// </summary>
-    private void DamageWithAttack1()
-    {
-#if DEBUG_attack1Raycast
-        Debug.Log("DamageWithAttack1 working.");
-#endif
-        CapsuleCollider2D collider = GetComponent<CapsuleCollider2D>();
-        Vector2 position;
-        Vector2 direction;
-        if (transform.eulerAngles.y == 180)
-        {
-            position = new Vector2(transform.position.x + (-collider.bounds.size.x / 2), transform.position.y + collider.bounds.size.y / 2);
-            direction = Vector2.left;
-        }
-            
-        else
-        {
-            position = new Vector2(transform.position.x + collider.bounds.size.x / 2, transform.position.y + collider.bounds.size.y / 2);
-            direction = Vector2.right;
-        }
-        RaycastHit2D hit = Physics2D.Raycast(position, direction, 1f);
-        if(hit && hit.collider.gameObject.tag == "Enemy")
-        {
-#if DEBUG_attack1Raycast
-            Debug.Log("Enemy damaged.");
-#endif
-        }
-    }
-
     public float MovementSpeed() { return movementSpeed; }
     public float RollingSpeed() { return rollingSpeed; }
     public Rigidbody2D Rigidbody() { return rig; }
